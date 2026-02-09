@@ -1,0 +1,36 @@
+# Python
+*.pyc
+__pycache__
+*.log
+.Python
+env/
+venv/
+lib/
+lib64/
+include/
+bin/
+share/
+pip-log.txt
+pip-delete-this-directory.txt
+htmlcov/
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+target/
+
+# Django-specific
+*.mo
+*.pot
+local_settings.py
+
+# IMPORTANT: For demonstration purposes only, you might want to 
+# ignore the .env file if it contains sensitive information 
+# like secret keys or database credentials.
+
+# .env
+
+db.sqlite3
+media/
+static_collected/
