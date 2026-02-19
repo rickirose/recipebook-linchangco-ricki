@@ -1,13 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-#from django.views.generic import TemplateView
+from django.views.generic.base import TemplateView
+from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
 
-# Create your views here.
+from .models import Recipe
 
-def ledger(request):
-    return HttpResponse('Hello World! This came from the ledger view')
-
-def recipe_list(request):
+def recipes_list(request):
     ctx = {
         "recipes": [
             {
@@ -76,7 +75,6 @@ def recipe_list(request):
 
 
 
-
 def recipe_1(request):
     ctx = {
         "name": "Recipe 1",
@@ -104,7 +102,7 @@ def recipe_1(request):
         ],
         "link": "/recipe/1"
     }
-    return render(request, 'recipe.html', ctx)
+    return render(request, 'recipes_list.html', ctx)
 
 def recipe_2(request):
     ctx = {
@@ -142,3 +140,13 @@ def recipe_2(request):
         "link": "/recipe/2"
     }
     return render(request, 'recipe.html', ctx)
+
+
+
+class RecipeView(DetailView):
+    model = Recipe
+    template_name = "recipe.html"
+
+class RecipesListView(ListView):
+    model = Recipe
+    template_name = "recipes_list.html"

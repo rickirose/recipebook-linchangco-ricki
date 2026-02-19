@@ -1,8 +1,7 @@
 from django.urls import path
-from .views import ledger, recipe_list, recipe_1, recipe_2
+from .views import RecipesListView, RecipeView
 
 urlpatterns = [
-    path('', recipe_list, name='recipe-list'),
-    path('recipe/1/', recipe_1, name='recipe-1'),
-    path('recipe/2/', recipe_2, name='recipe-2'),
+    path('', RecipesListView.as_view(), name="recipes_list"),
+    path('<int:pk>/', RecipeView.as_view(), name="recipe"),
 ]

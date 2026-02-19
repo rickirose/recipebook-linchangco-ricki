@@ -29,8 +29,8 @@ local_settings.py
 # ignore the .env file if it contains sensitive information 
 # like secret keys or database credentials.
 
-# .env
-
+myenv/
+.env
 db.sqlite3
 media/
 static_collected/
