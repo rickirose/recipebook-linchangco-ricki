@@ -1,24 +1,48 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
+from django.core.validators import MinLengthValidator
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    bio = models.TextField(
+        validators=[MinLengthValidator(256)],
+    )
+
+    def __str__(self):
+        return f"{self.name}"
+
 
 class Ingredient(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
         return f"{self.name}"
-    
+
     def get_absolute_url(self):
         return reverse('ingredients', args=[str(self.id)])
 
+
 class Recipe(models.Model):
     name = models.CharField(max_length=100)
+    author = models.ForeignKey(
+        Profile,
+        on_delete=models.CASCADE,
+        related_name='recipes',
+        default=None
+    )
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.name}"
-    
+
     def get_absolute_url(self):
         return reverse('recipe', args=[str(self.id)])
-    
+
+
 class RecipeIngredient(models.Model):
     quantity = models.CharField(max_length=50)
     ingredient = models.ForeignKey(
@@ -31,4 +55,3 @@ class RecipeIngredient(models.Model):
         on_delete=models.CASCADE,
         related_name='ingredients'
     )
-

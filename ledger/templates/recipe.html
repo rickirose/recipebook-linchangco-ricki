@@ -2,6 +2,8 @@
 
 {% block content %}
 <h2>{{ name }}</h2>
+    <h3>Author: {{ recipe.author.name }}</h3>
+    
     <ul>
     {% for ingredient in object.ingredients.all %}
         <li>{{ ingredient.ingredient.name }}
