@@ -115,9 +115,15 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
-
+STATICFILES_DIRS = [
+    BASE_DIR/'static',
+]
 STATIC_URL = 'static/'
 
 # Redirect
 LOGIN_REDIRECT_URL = 'recipes-list'
 LOGOUT_REDIRECT_URL = 'login'
+
+# Add images thru admin
+MEDIA_ROOT = BASE_DIR/'media'
+MEDIA_URL = '/media/'
